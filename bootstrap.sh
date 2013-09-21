@@ -11,3 +11,8 @@ sleep 1
 service nginx start
 # To be sure nginx is set to come up after a reboot
 update-rc.d nginx defaults
+
+mkdir /var/www
+cd /var/www
+git clone https://github.com/wd42/wd42-site
+
