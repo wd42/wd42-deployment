@@ -34,6 +34,8 @@ curl https://raw.github.com/wd42/wd42-deployment/master/upstart/wd42-site.conf -
 service wd42-site start
 curl https://raw.github.com/wd42/wd42-deployment/master/nginx/wd42-site -o /etc/nginx/sites-available/wd42-site
 ln -s /etc/nginx/sites-available/wd42-site /etc/nginx/sites-enabled/wd42-site
+# Ensures no conficts for node app
+rm /etc/nginx/sites-enabled/default
 service nginx start
 # To be sure nginx is set to come up after a reboot
 update-rc.d nginx defaults
