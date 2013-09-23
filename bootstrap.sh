@@ -22,7 +22,7 @@ function user {
 
 echo "The required packages are about to be installed:"
 sleep 1
-apt-get update && apt-get upgrade
+apt-get update && apt-get upgrade -y
 apt-get install -y software-properties-common
 add-apt-repository ppa:chris-lea/node.js
 apt-get update && apt-get install -y python-software-properties python g++ make git nginx nodejs=0.10.18-1chl1~precise1
