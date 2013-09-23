@@ -29,13 +29,14 @@ apt-get update && apt-get install -y python g++ make git nginx nodejs=0.10.18-1c
 
 echo "Setting up services:"
 sleep 1
+# Acquiring node upsart script
+curl https://raw.github.com/wd42/wd42-deployment/master/upstart/wd42-site.conf -o /etc/init/wd42-site.conf
+service wd42-site start
 curl https://raw.github.com/wd42/wd42-deployment/master/nginx/wd42-site -o /etc/nginx/sites-available/wd42-site
 ln -s /etc/nginx/sites-available/wd42-site /etc/nginx/sites-enabled/wd42-site
 service nginx start
 # To be sure nginx is set to come up after a reboot
 update-rc.d nginx defaults
-# Acquiring node upsart script
-curl https://raw.github.com/wd42/wd42-deployment/master/upstart/wd42-site.conf -o /etc/init/wd42-site.conf
 
 echo "Cloning application:"
 mkdir -p /srv/www/wd42-site
