@@ -38,8 +38,8 @@ update-rc.d nginx defaults
 curl https://raw.github.com/wd42/wd42-deployment/master/upstart/wd42-site.conf -o /etc/init/wd42-site.conf
 
 echo "Cloning application:"
-mkdir -p /sys/www/wd42-site
-cd /sys/www/wd42-site
+mkdir -p /srv/www/wd42-site
+cd /srv/www/wd42-site
 git clone https://github.com/wd42/wd42-site .
 npm install
 node app.js
