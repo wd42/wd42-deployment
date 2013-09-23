@@ -1,0 +1,28 @@
+# the IP(s) on which your node server is running. I chose port 3000.
+upstream wd42-site {
+    server 127.0.0.1:3000;
+}
+
+server {
+    listen 0.0.0.0:80;
+    server_name de42.co *.dev42.co;
+    return 301 $scheme://web.dev42.co$request_uri;
+}
+
+# the nginx server instance
+server {
+    listen 0.0.0.0:80;
+    server_name web.dev42.co;
+    access_log /var/log/nginx/wd42-site.log;
+
+    # pass the request to the node.js server with the correct headers and much more can be added, see nginx config options
+    location / {
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_set_header X-NginX-Proxy true;
+
+      proxy_pass http://wd42-site;
+      proxy_redirect off;
+    }
+ }
