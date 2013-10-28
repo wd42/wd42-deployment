@@ -13,3 +13,13 @@ Simply run the following and within no time everything will be good in the world
 ```bash
 # curl https://raw.github.com/wd42/wd42-deployment/master/bootstrap.sh | bash
 ```
+
+or if you prefer [vagrant](http://www.vagrantup.com):
+
+```bash
+$ vagrant plugin install vagrant-berkshelf
+$ vagrant up
+```
+
+and go to http://localhost:3000/
+

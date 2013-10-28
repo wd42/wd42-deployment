@@ -20,7 +20,7 @@ respawn limit 20 5
 # Max open files are @ 1024 by default. Bit few.
 limit nofile 32768 32768
 
-env HOME=/srv/www/wd42-site
+env HOME=<%= node[:wd42_site][:dir] %>
 
 script
   export HOME=$HOME
@@ -31,6 +31,5 @@ script
   ( logger -t wd42-site </tmp/wd42-site-log-fifo & )
   exec >/tmp/wd42-site-log-fifo
   rm /tmp/wd42-site-log-fifo
-  exec sudo -u www-data /usr/bin/nodejs /srv/www/wd42-site/app.js 2>&1 >> /var/log/node.log
+  exec sudo node /srv/www/wd42-site/app.js 2>&1 >> /var/log/node.log
 end script
-
